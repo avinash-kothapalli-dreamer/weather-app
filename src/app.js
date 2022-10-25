@@ -7,12 +7,16 @@ const app =express()
 
 //require("../public/js/app")
 
+const port = process.env.PORT || 3000;
+
 const publicpath =path.join(__dirname, '../public')
  const viewspath =path.join(__dirname, '../templates/views')
  const partialpath= path.join(__dirname,'../templates/partials')
 app.use(express.static(publicpath))
 hbs.registerPartials(partialpath)
 app.set('views',viewspath)
+
+
 app.set('view engine','hbs')
  app.get('/',(req,res)=>{
     res.render('index',{
@@ -68,6 +72,6 @@ app.get('*',(req,res)=>{
         errormsg:"page not found"
     })
 })
-app.listen(14001,(req,res)=>{
-    console.log('listening to the port of 3500')
+app.listen(port,(req,res)=>{
+    console.log('listening to the port = '+port)
 })
